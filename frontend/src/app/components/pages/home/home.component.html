@@ -1,0 +1,26 @@
+<ul>
+    <li *ngFor="let game of games">
+        <a routerLink="/game/{{game.id}}">
+            <img [src]="game.imageUrl" [alt]="game.id"/>
+            <div class="content">
+                <div class="name">
+                   {{game.name}} 
+                </div>
+                <div class="stars">
+                </div>
+                <div class="product-item-footer">
+                    <div class="genre">
+                        <span *ngFor="let genre of game.genre">
+                           {{genre}}, 
+                        </span>
+                    </div>
+                    <div class="price">
+                        <span>
+                            {{game.price | currency}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </li>
+</ul>

@@ -10,4 +10,8 @@ export class GamesService {
   getAll():Game[]{
     return sample_games;
   }
+
+  getAllFoodsBySearch(searchTerm:string){
+    return this.getAll().filter(game => game.name.toLowerCase().includes(searchTerm.toLowerCase())); 
+  }
 }

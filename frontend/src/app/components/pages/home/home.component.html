@@ -1,3 +1,4 @@
+<app-search></app-search>
 <ul>
     <li *ngFor="let game of games">
         <a routerLink="/game/{{game.id}}">
@@ -6,13 +7,14 @@
                 <div class="name">
                    {{game.name}} 
                 </div>
-                <div class="stars">
-                </div>
                 <div class="product-item-footer">
                     <div class="genre">
                         <span *ngFor="let genre of game.genre">
-                           {{genre}}, 
+                           {{genre}}
                         </span>
+                    </div>
+                    <div class="stars">
+                        <span>Rating: {{game.stars}}/5</span>
                     </div>
                     <div class="price">
                         <span>

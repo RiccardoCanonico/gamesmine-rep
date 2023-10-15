@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { GamesService } from 'src/app/services/games.service';
 import { Game } from 'src/app/shared/models/Game';
 
@@ -9,8 +10,15 @@ import { Game } from 'src/app/shared/models/Game';
 })
 export class HomeComponent implements OnInit{
   games:Game[] = [];
-  constructor(private gameService:GamesService){
-    this.games = gameService.getAll();
+  constructor(private gameService:GamesService, activatedRoute:ActivatedRoute){
+    activatedRoute.params.subscribe((params) => {
+      if(params['searchTerm']){
+        this.games = this.gameService.getAllFoodsBySearch(params['searchTerm']);
+      }
+      else{
+        this.games = gameService.getAll();
+      }
+    });
   }
   
   ngOnInit(): void { 

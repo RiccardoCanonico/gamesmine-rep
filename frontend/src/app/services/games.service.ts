@@ -5,6 +5,7 @@ import { sample_games } from 'src/data';
 @Injectable({
   providedIn: 'root'
 })
+
 export class GamesService {
   constructor() { }
   getAll():Game[]{
@@ -12,6 +13,10 @@ export class GamesService {
   }
 
   getAllFoodsBySearch(searchTerm:string){
-    return this.getAll().filter(game => game.name.toLowerCase().includes(searchTerm.toLowerCase())); 
+    return this.getAll().filter((game) => game.name.toLowerCase().includes(searchTerm.toLowerCase())); 
+  }
+
+  getFoodById(gameId:string):Game{
+    return this.getAll().find((game) => game.id == gameId) ?? new Game();
   }
 }

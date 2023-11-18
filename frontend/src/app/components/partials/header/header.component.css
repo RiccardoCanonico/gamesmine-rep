@@ -39,9 +39,17 @@ a span{
     background: #ff4d4d;
     color: white;
     padding: 0.1rem 0.45rem;
-    margin: 0.1rem;
+    margin-bottom: 0.1rem;
     border-radius: 100rem;
     font-size: 0.9rem;
+}
+
+a fa-icon {
+    background: #ff4d4d;
+    color: white;
+    padding: 0.2rem 0.50rem;
+    margin: 0.1rem;
+    border-radius: 100rem;
 }
 
 /*.menu-container{

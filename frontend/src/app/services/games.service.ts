@@ -12,11 +12,11 @@ export class GamesService {
     return sample_games;
   }
 
-  getAllFoodsBySearch(searchTerm:string){
+  getAllGamesBySearch(searchTerm:string){
     return this.getAll().filter((game) => game.name.toLowerCase().includes(searchTerm.toLowerCase())); 
   }
 
-  getFoodById(gameId:string):Game{
+  getGameById(gameId:string):Game{
     return this.getAll().find((game) => game.id == gameId) ?? new Game();
   }
 }

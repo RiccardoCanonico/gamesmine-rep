@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit{
   constructor(private gameService:GamesService, activatedRoute:ActivatedRoute){
     activatedRoute.params.subscribe((params) => {
       if(params['searchTerm']){
-        this.games = this.gameService.getAllFoodsBySearch(params['searchTerm']);
+        this.games = this.gameService.getAllGamesBySearch(params['searchTerm']);
       }
       else{
         this.games = gameService.getAll();

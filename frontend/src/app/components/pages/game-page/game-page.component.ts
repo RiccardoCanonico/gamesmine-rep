@@ -13,7 +13,7 @@ export class GamePageComponent {
   constructor(activatedRoute:ActivatedRoute, gameService:GamesService){
     activatedRoute.params.subscribe((params) => {
       if(params['id']){
-        this.game = gameService.getFoodById(params['id']);
+        this.game = gameService.getGameById(params['id']);
       }
     })
   }

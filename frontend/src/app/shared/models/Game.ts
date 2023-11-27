@@ -5,4 +5,5 @@ export class Game{
     genre!:string[];
     imageUrl!:string;
     stars!:number;
+    description!:string;
 }

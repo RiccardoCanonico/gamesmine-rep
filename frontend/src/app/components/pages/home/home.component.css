@@ -1,35 +1,30 @@
-ul{
+/*ul{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     list-style-type: none;
     padding: 0;
-}
+}*/
 
-li a{
-    height: 22.5rem;
-    width: 20rem;
-    border: 1px solid whitesmoke;
-    border-radius: 1rem;
-    margin: 0.5rem;
+a{
+    border-radius: 0.5rem;
+    margin-top: 1.3rem;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-    color: #e72929;
+    overflow: hidden; 
 }
 
-li a:hover{
+a:hover{
     opacity: 0.9;
     cursor: pointer;
 }
 
-li a img{
-    object-fit: cover;
+a img{
     height: 14.5rem;
 }
 
-.content{
+/*.content{
     margin-top: 0.3rem;
     padding: 0.5rem 1rem;
     position: relative;
@@ -65,15 +60,10 @@ li a img{
     color: #414141;
     margin-top: 0.7rem;
     font-size: 1.1rem;  
-}
+}*/
 
 .price{
-    position: absolute;
-    bottom: 0;
-    left: 0.9rem;
     background: white;
-    padding: 0.3rem 100% 0 0;
     color: #414141;
-    margin-top: 0.7rem;
     font-size: 1.1rem;
 }

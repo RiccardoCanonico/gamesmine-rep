@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CartService } from 'src/app/services/cart.service';
 import { GamesService } from 'src/app/services/games.service';
 import { Game } from 'src/app/shared/models/Game';
 
@@ -10,11 +11,17 @@ import { Game } from 'src/app/shared/models/Game';
 })
 export class GamePageComponent {
   game!: Game;
-  constructor(activatedRoute:ActivatedRoute, gameService:GamesService){
+  constructor(activatedRoute:ActivatedRoute, gameService:GamesService, private cartService:CartService, private router:Router){
     activatedRoute.params.subscribe((params) => {
       if(params['id']){
         this.game = gameService.getGameById(params['id']);
       }
     })
   }
+
+  addToCart(){
+    this.cartService.addToCart(this.game);
+    this.router.navigateByUrl('/cart-page');
+  }
 }
+

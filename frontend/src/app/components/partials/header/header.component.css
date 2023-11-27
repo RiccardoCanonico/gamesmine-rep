@@ -38,10 +38,10 @@ ul.dropdown-menu a{
 a span{
     background: #ff4d4d;
     color: white;
-    padding: 0.1rem 0.45rem;
-    margin-bottom: 0.1rem;
+    padding: 0.1rem 0.30rem;
     border-radius: 100rem;
-    font-size: 0.9rem;
+    font-size: 0.7rem;
+    margin-left: 0.1rem;
 }
 
 a fa-icon {
@@ -50,6 +50,10 @@ a fa-icon {
     padding: 0.2rem 0.50rem;
     margin: 0.1rem;
     border-radius: 100rem;
+}
+
+a fa-icon:hover {
+    background: #942626;
 }
 
 /*.menu-container{

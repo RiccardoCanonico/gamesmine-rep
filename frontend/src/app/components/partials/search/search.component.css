@@ -22,7 +22,12 @@ div button{
     outline: none;
 }
 
-/*div button:hover{
-    opacity: 1;
+div button:hover{
+    background-color: #942626;
     cursor: pointer;
-}*/
+}
+
+div button:active{
+    background-color: #942626;
+    cursor: pointer;
+}

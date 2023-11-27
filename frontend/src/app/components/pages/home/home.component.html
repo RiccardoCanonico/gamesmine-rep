@@ -1,4 +1,4 @@
-<ul>
+<!-- <ul>
     <li *ngFor="let game of games">
         <a routerLink="/game/{{game.id}}">
             <img [src]="game.imageUrl" [alt]="game.id"/>
@@ -24,4 +24,29 @@
             </div>
         </a>
     </li>
-</ul>
+</ul> -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 col-md-6" *ngFor="let game of games">
+            <div class="row">
+                <div class="col-12">
+                    <a routerLink="/game/{{game.id}}">
+                        <img [src]="game.imageUrl" [alt]="game.id"/>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="name">
+                        {{game.name}} 
+                    </div>
+                </div>
+                <div class="col-6 d-flex justify-content-end">
+                    <div class="price">
+                        {{game.price | currency}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

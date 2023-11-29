@@ -1,0 +1,109 @@
+.container{
+    margin-top: 1.3rem;
+}
+
+.game-info{
+    margin-top: 1.3rem;
+    border-radius: 0.5rem;
+}
+
+.game-info img{
+    margin-top: 1rem;
+    margin-bottom: 1rem;;
+    border-radius: 0.5rem;
+    width: 14rem;
+}
+
+.game-info .game-selector{
+    margin-top: 1rem;
+}
+
+.game-info .game-selector a{
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1.2rem;
+}
+
+.game-info .game-selector a:hover{
+    color: #ff4d4d;
+}
+
+.game-info .price{
+    color: #ffffff;
+    font-size: 1.3rem;
+    margin-top: 4rem;
+}
+
+.game-info button {
+    color: #ff4d4d;
+}
+
+.game-info button:hover {
+    color: #942626;
+}
+
+.game-info .game-selector .game-buttons {
+    margin-top: 1rem;
+}
+
+.game-info .game-selector .game-buttons .form-select{
+    width: 100%;
+}
+
+.game-info .game-selector .game-buttons .form-select:hover{
+    opacity: 0.8;
+}
+
+.hr{
+    color: #ff4d4d;
+}
+
+.resume{
+    margin-top: 1.5rem;
+    margin-left: 1rem;
+}
+
+.row-total-count{
+    border-top-right-radius: 0.5rem;
+    border-top-left-radius: 0.5rem; 
+}
+
+.row-total-count .col-12{
+    margin-top: 1rem;
+}
+
+.row-total-count, .row-total-price{
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.row-total-price .col-12{
+    margin-top: 2rem;
+}
+
+.row-checkout-button{
+    border-bottom-right-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+}
+
+.row-checkout-button button{
+    border-bottom-right-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    margin-top: 3rem;
+    background-color: #ff4d4d;
+    color: #ffffff;
+    width: 95%;
+    border-radius: 10rem;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.row-checkout-button button:hover{
+    background-color: #942626;
+}
+
+
+
+

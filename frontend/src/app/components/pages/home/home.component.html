@@ -25,6 +25,7 @@
         </a>
     </li>
 </ul> -->
+<app-not-found [visible] = "!games || !games.length" resetLinkText="Reset search"></app-not-found>
 <div class="container">
     <div class="row">
         <div class="col-lg-4 col-md-6" *ngFor="let game of games">

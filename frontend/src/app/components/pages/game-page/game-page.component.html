@@ -1,4 +1,5 @@
-<div class="container">
+<app-not-found [visible] = "!game.id" notFoundMessage="Game not found" resetLinkText="Back to Homepage"></app-not-found>
+<div *ngIf="game.id" class="container">
     <div class="row">
         <div class="col-lg-6 col-sm-12">
             <img [src]="game.imageUrl" [alt]="game.name" />           

@@ -9,12 +9,15 @@ import { Game } from 'src/app/shared/models/Game';
   templateUrl: './game-page.component.html',
   styleUrls: ['./game-page.component.css']
 })
+
 export class GamePageComponent {
   game!: Game;
   constructor(activatedRoute:ActivatedRoute, gameService:GamesService, private cartService:CartService, private router:Router){
     activatedRoute.params.subscribe((params) => {
       if(params['id']){
-        this.game = gameService.getGameById(params['id']);
+        gameService.getGameById(params['id']).subscribe((serverGame => {
+          this.game = serverGame;
+        }));
       }
     })
   }

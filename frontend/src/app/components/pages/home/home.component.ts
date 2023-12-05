@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { GamesService } from 'src/app/services/games.service';
 import { Game } from 'src/app/shared/models/Game';
 
@@ -11,13 +12,17 @@ import { Game } from 'src/app/shared/models/Game';
 export class HomeComponent implements OnInit{
   games:Game[] = [];
   constructor(private gameService:GamesService, activatedRoute:ActivatedRoute){
+    let gamesObservable:Observable<Game[]>;
     activatedRoute.params.subscribe((params) => {
       if(params['searchTerm']){
-        this.games = this.gameService.getAllGamesBySearch(params['searchTerm']);
+        gamesObservable = this.gameService.getAllGamesBySearch(params['searchTerm']);
       }
       else{
-        this.games = gameService.getAll();
-      }
+        gamesObservable = gameService.getAll();
+      }   
+      gamesObservable.subscribe((serverGames) => {
+        this.games = serverGames;
+      })
     });
   }
   

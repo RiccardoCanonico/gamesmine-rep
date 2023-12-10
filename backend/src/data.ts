@@ -37,3 +37,20 @@ export const sample_games: any[] = [
         description: "Sekiro: Shadows Die Twice per PC è un gioco di azione e avventura in terza persona. Il gioco è ambientato in una versione romanzata del Giappone Sengoku del XVI secolo. Questoè stato un periodo di sconvolgimenti in Giappone, caratterizzato da continui cambiamenti politici e mutamenti quasi continui, proprio quando i signori e la nobiltà combattevano per ingrandire le loro prospettive e le loro ricchezze. "
     }
 ]
+
+export const sample_users: any[] = [
+    {
+        name: "Gesu Cristo",
+        email: "iosonogesu@gmail.com",
+        password: "culo1",
+        address: "Nazareth",
+        isAdmin: true,
+    },
+    {
+        name: "Even Flow",
+        email: "evenflow@gmail.com",
+        password: "culo2",
+        address: "Skate 3",
+        isAdmin: false,
+    }
+] 

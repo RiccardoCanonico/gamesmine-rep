@@ -1,0 +1,23 @@
+<div class="container" novalidate>
+    <div class="row">
+        <form #formLogin="ngForm" (ngSubmit)="submit(formLogin)">
+            <div class="row justify-content-center">
+                <div class="col-5">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" ngModel required pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-5">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" ngModel required>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-5">
+                    <button type="submit" [disabled]="!formLogin.valid" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>    
+</div>

@@ -1,5 +1,5 @@
 export class Game{
-    id!:string;
+    id!:number;
     name!:string;
     price!:number;
     genre!:string[];

@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import { sample_games, sample_users } from "./data";
 import jwt from "jsonwebtoken";
+import mysql from "mysql2";
 
 const app = express();
 app.use(express.json());
@@ -11,21 +12,34 @@ app.use(cors({
     origin:["http://localhost:4200"]
 }))
 
+
+let conn = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "Riccardo.2001",
+    database: "gamesmine"
+});
+
+conn.connect(function(err){
+    if(err) throw err;
+    console.log("Connessione avvenuta");
+});
+
 app.get("/api/games", (req, res) => {
     res.send(sample_games);
-})
+});
 
 app.get("/api/games/search/:searchTerm", (req, res) => {
     const searchTerm = req.params.searchTerm;
     const games = sample_games.filter((game) => game.name.toLowerCase().includes(searchTerm.toLowerCase()));
     res.send(games);
-})
+});
 
 app.get("/api/games/:gameId", (req, res) => {
     const gameId = req.params.gameId;
     const game = sample_games.find((game) => game.id == gameId);
     res.send(game);
-})
+});
 
 app.post("/api/users/login", (req, res) => {
     const {email, password} = req.body
@@ -37,7 +51,7 @@ app.post("/api/users/login", (req, res) => {
     else{
         res.status(400).send("Email or password not valid")
     }
-})
+});
 
 const generateTokenResponse = (user:any) => {
     const token = jwt.sign({
@@ -53,6 +67,6 @@ const generateTokenResponse = (user:any) => {
 const port = 5000;
 app.listen(port, () => {
     console.log("Website served on http://localhost:" + port);
-})
+});
 
 

@@ -24,7 +24,7 @@ export class UserService {
           this.setUserToLocalStorage(user);
         },
         error: (errorResponse) => {
-          alert("Login faliled");
+          alert("Login failed");
         }
       })
     );

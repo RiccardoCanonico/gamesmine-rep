@@ -1,7 +1,7 @@
 import {Game} from './app/shared/models/Game'; 
 export const sample_games: Game[] = [
     {
-        id: '1',
+        id: 1,
         name: 'Dark Souls 3',
         price: 20,
         genre: ['RPG', 'Soulslike'],
@@ -10,7 +10,7 @@ export const sample_games: Game[] = [
         description: "Dark Souls 3 per PC è un gioco di ruolo fantasy, il terzo della serie e segue immediatamente il suo predecessore, Dark Souls 2. Il gioco è ambientato in un universo immaginario, il Regno di Lothric, dove il lungo periodo di illuminazione (letteralmente) è minacciato dall'avvento dell'Età dell'Oscurità. Il giocatore deve garantire la sopravvivenza dell'Età del fuoco assicurando che la Prima fiamma continui a bruciare a lungo."
     },
     {
-        id: '2',
+        id: 2,
         name: 'Mortal Kombat 1',
         price: 60,
         genre: ['Fighting Game', 'Multiplayer'],
@@ -19,7 +19,7 @@ export const sample_games: Game[] = [
         description: "Ce l’abbiamo nel sangue! Scopri un universo di Mortal Kombat™ del tutto rivoluzionato, creato dal Dio del fuoco Liu Kang. Rispettando la visione di perfezione del Dio del fuoco Liu Kang, Mortal Kombat 1 presenta un universo familiare e allo stesso tempo radicalmente diverso"
     },
     {
-        id: '3',
+        id: 3,
         name: 'Red Dead Redemption 2',
         price: 60,
         genre: ['Open World', 'Action', 'Singleplayer'],
@@ -28,7 +28,7 @@ export const sample_games: Game[] = [
         description: "Red Dead Redemption 2 per PC è un gioco d’azione ambientato in un open world in cui il giocatore può vagare liberamente con alcuni elementi che si svolgono in terza persona, altri in modalità di gioco in prima persona. Il giocatore può commettere crimini, ma dovrà però essere pronto a fronteggiare le forze dell'ordine che vorranno far valere l'intero peso della legge sul miscredente!"
     },
     {
-        id: '4',
+        id: 4,
         name: 'Sekiro: Shadows Die Twice',
         price: 30,
         genre: ['Soulslike', 'Action', 'Singleplayer'],

@@ -22,12 +22,12 @@ export class CartService {
     this.setCartToLocalStorage();
   }
 
-  removeFromCart(gameId:string):void{
+  removeFromCart(gameId:number):void{
     this.cart.items = this.cart.items.filter(item => item.game.id != gameId);
     this.setCartToLocalStorage();
   }
 
-  changeQuantity(gameId:string, quantity:number){
+  changeQuantity(gameId:number, quantity:number){
     let cartItem = this.cart.items.find(item => item.game.id === gameId);
     if(!cartItem) return;
 

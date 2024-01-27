@@ -1,59 +1,59 @@
-<app-not-found [visible] = "!cart || !cart.items.length" notFoundMessage = "Cart Page Empty!" resetLinkText = "Go To Homepage">
+<app-not-found [visible] = "!cart || !cart.items.length" notFoundMessage = "Carrello vuoto!" resetLinkText = "Torna alla home">
 </app-not-found>
 
 <div *ngIf="cart && cart.items.length" class="container">
-    <div class="row">
-        <div class="col-7 bg-dark game-info">
-            <div class="row" *ngFor="let cartItem of cart.items">
-                <div class="col-4">
-                    <img [src]="cartItem.game.imageUrl" [alt]="cartItem.game.name">
-                </div>
-                <div class="col-6 game-selector">
-                    <span>
-                        <a routerLink="/game/{{cartItem.game.id}}">
-                            {{ cartItem.game.name }}
-                        </a>
-                    </span>
-                    <div class="row game-buttons">
-                        <div class="col-2">
-                            <button class="btn" (click)="removeFromCart(cartItem)">
-                                <fa-icon [icon]="['fas', 'trash']"></fa-icon>
-                            </button>
-                        </div>
-                        <div class="col-5">
-                            <select class="form-select" #quantitySelect [value]="cartItem.quantity" (change)="changeQuantity(cartItem, quantitySelect.value)">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
+        <div class="row">
+            <div class="col-7 bg-dark game-info">
+                <div class="row" *ngFor="let cartItem of cart.items">
+                    <div class="col-4">
+                        <img [src]="cartItem.game.imageUrl" [alt]="cartItem.game.name">
+                    </div>
+                    <div class="col-6 game-selector">
+                        <span>
+                            <a routerLink="/game/{{cartItem.game.id}}">
+                                {{ cartItem.game.name }}
+                            </a>
+                        </span>
+                        <div class="row game-buttons">
+                            <div class="col-2">
+                                <button class="btn" (click)="removeFromCart(cartItem)">
+                                    <fa-icon [icon]="['fas', 'trash']"></fa-icon>
+                                </button>
+                            </div>
+                            <div class="col-5">
+                                <select class="form-select" #quantitySelect [value]="cartItem.quantity" (change)="changeQuantity(cartItem, quantitySelect.value)">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
+                    <div class="price col-2 text-center">
+                        <span>{{ cartItem.price | currency }}</span>
+                    </div>
+                    <hr class="hr border-2">
                 </div>
-                <div class="price col-2 text-center">
-                    <span>{{ cartItem.price | currency }}</span>
+            </div>
+            <div class="col-4 text-center resume">
+                <div class="row bg-dark row-total-count">
+                    <div class="col-12">
+                        Prodotti totali: {{ cart.totalCount }}
+                    </div>
                 </div>
-                <hr class="hr border-2">
+                <div class="row bg-dark row-total-price">
+                    <div class="col-12">
+                        Prezzo totale: {{ cart.totalPrice | currency }}
+                    </div>
+                </div>
+                <div class="row bg-dark row-checkout-button">
+                    <div class="col-12">
+                        <button class="btn" (click)="createOrder()">Procedi al pagamento</button>
+                    </div>
+                    &nbsp;
+                </div>    
             </div>
         </div>
-        <div class="col-4 text-center resume">
-            <div class="row bg-dark row-total-count">
-                <div class="col-12">
-                    Total products: {{ cart.totalCount }}
-                </div>
-            </div>
-            <div class="row bg-dark row-total-price">
-                <div class="col-12">
-                    Total price: {{ cart.totalPrice | currency }}
-                </div>
-            </div>
-            <div class="row bg-dark row-checkout-button">
-                <div class="col-12">
-                    <button class="btn" routerLink="/checkout">Proceed to checkout</button>
-                </div>
-                &nbsp;
-            </div>    
-        </div>
-    </div>
 </div>

@@ -1,0 +1,56 @@
+input {
+    border-radius: 2rem;
+}
+
+.btn {
+    background-color: #ff4d4d;
+    color: #ffffff;
+    width: 100%;
+    border-radius: 10rem;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: #942626;
+}
+
+.resume-title {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.resume-info {
+    font-size: 1.3rem;
+    color: #ffffff;
+    border-radius: 0.5rem;
+}
+
+.resume-info-row {
+    margin-top: 1rem;
+}
+
+.resume-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.quantity {
+    font-size: 0.8rem;
+}
+
+.hr {
+    color: #ff4d4d;
+}
+
+.price {
+    margin-right: 0.5rem;
+}
+
+.game-name {
+    margin-left: 0.5rem;
+}
+
+

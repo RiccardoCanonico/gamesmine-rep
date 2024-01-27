@@ -15,6 +15,8 @@ import { NotFoundComponent } from './components/partials/not-found/not-found.com
 import { HttpClientModule } from '@angular/common/http';
 import { LoginPageComponent } from './components/pages/login-page/login-page.component';
 import { FormsModule } from '@angular/forms';
+import { RegisterPageComponent } from './components/pages/register-page/register-page.component';
+import { PaymentPageComponent } from './components/pages/payment-page/payment-page.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { FormsModule } from '@angular/forms';
     CartPageComponent,
     NotFoundComponent,
     LoginPageComponent,
+    RegisterPageComponent,
+    PaymentPageComponent,
   ],
   imports: [
     BrowserModule,

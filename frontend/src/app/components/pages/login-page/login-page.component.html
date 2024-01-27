@@ -15,7 +15,16 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-5">
-                    <button type="submit" [disabled]="!formLogin.valid" class="btn btn-primary">Submit</button>
+                    <button type="submit" [disabled]="!formLogin.valid" class="btn btn-primary">Login</button>
+                </div>
+            </div>
+            &nbsp;
+            <div class="row justify-content-center">
+                <div class="col-12 text-center">
+                    Nuovo utente?
+                    <a routerLink="/register">
+                        Registrati
+                    </a>
                 </div>
             </div>
         </form>

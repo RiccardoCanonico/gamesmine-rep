@@ -4,6 +4,8 @@ import { User } from '../shared/models/User';
 import { IUserLogin } from '../shared/Interfaces/IUserLogin';
 import { HttpClient } from '@angular/common/http';
 import { USER_LOGIN_URL } from '../shared/constants/url';
+import { USER_REGISTER_URL } from '../shared/constants/url';
+import { IUserRegister } from '../shared/Interfaces/IUserRegister';
 
 const USER_KEY = 'User';
 @Injectable({
@@ -17,17 +19,33 @@ export class UserService {
     this.userObservable = this.userSubject.asObservable();
   }
 
+  public get currentUser(): User{
+    return this.userSubject.value;
+  }
+
   login(userLogin:IUserLogin):Observable<User>{
-    return this.http.post<User>(USER_LOGIN_URL, userLogin).pipe(
-      tap({
+    return this.http.post<User>(USER_LOGIN_URL, userLogin).pipe(tap({
         next: (user) => {
           this.setUserToLocalStorage(user);
+          this.userSubject.next(user);
         },
         error: (errorResponse) => {
-          alert("Login failed");
+          alert("Email o password sbagliati");
         }
       })
     );
+  }
+
+  register(userRegister:IUserRegister): Observable<User> {
+    return this.http.post<User>(USER_REGISTER_URL, userRegister).pipe(tap({
+      next: (user) => {
+        this.setUserToLocalStorage(user);
+        this.userSubject.next(user);
+      },
+      error: (errorResponse) => {
+       alert("Registrazione fallita");
+      }
+    }));
   }
 
   logout(){

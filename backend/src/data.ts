@@ -1,5 +1,5 @@
 
-export const sample_games: any[] = [
+const sample_games: any[] = [
     {
         id: 1,
         name: 'Dark Souls 3',
@@ -38,7 +38,7 @@ export const sample_games: any[] = [
     }
 ]
 
-export const sample_users: any[] = [
+const sample_users: any[] = [
     {
         name: "Gesu Cristo",
         email: "iosonogesu@gmail.com",

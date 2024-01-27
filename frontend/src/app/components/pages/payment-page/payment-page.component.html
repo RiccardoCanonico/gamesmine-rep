@@ -1,0 +1,61 @@
+<div class="container">
+    &nbsp;
+    <div class="row">
+        <div class="col-7">
+            <form #formPayment="ngForm">
+                <div class="row">
+                    <div class="col-12">
+                        <label class="form-label">Numero della carta</label>
+                        <input type="text" class="form-control" placeholder="1234 5678 9123 4567" name="cardNumber" ngModel required pattern="[0-9\s]{13,19}" maxlength="16">
+                    </div>
+                </div>
+                &nbsp;
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <label class="form-label">Titolare della carta</label>
+                        <input type="text" class="form-control" placeholder="Mario Rossi" name="cardHolder" ngModel required>
+                    </div>
+                </div>
+                &nbsp;
+                <div class="row justify-content-center">
+                    <div class="col-6">
+                        <label class="form-label">Data di scadenza</label>
+                        <input type="text" class="form-control" placeholder="MM/YY" name="expireDate" maxlength="5" ngModel required>
+                    </div>
+                    <div class="col-6">
+                        <label class="form-label">CVC</label>
+                        <input type="text" class="form-control" placeholder="CVC" name="cvc" maxlength="3" ngModel required>
+                    </div>
+                </div>
+                &nbsp;
+                <div class="row justify-content-center">
+                    <div class="col-7">
+                        <button type="submit" [disabled]="!formPayment.valid" (click)="insertOrder()" class="btn btn-primary">Acquista</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-5">
+            <div class="resume-title">Riepilogo</div>
+            &nbsp;
+            <div class="resume-info bg-dark">
+                <div class="row resume-info-row" *ngFor="let cartItem of cart.items">
+                    <div class="col-6 text-center">
+                        {{ cartItem.game.name }}
+                        <span class="quantity" *ngIf="cartItem.quantity > 1">x{{ cartItem.quantity }}</span>
+                    </div>
+                    <div class="col-6 text-end">
+                        <span class="price">{{ cartItem.price | currency }}</span>
+                    </div>
+                </div>
+                <hr class="hr border-2">
+                <div class="row">
+                    <div class="col-12 text-center resume-price">
+                        <div>Totale: {{ cart.totalPrice | currency }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+

@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row">
+        &nbsp;
+        <form #formRegister="ngForm" (ngSubmit)="submit(formRegister)">
+            <div class="row justify-content-center">
+                <div class="col-5">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" ngModel required pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-5">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" ngModel required>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-5">
+                    <label class="form-label">Nome</label>
+                    <input type="text" class="form-control" name="name" ngModel required>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-5">
+                    <label class="form-label">Indirizzo</label>
+                    <input type="text" class="form-control" name="address" ngModel required>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-5">
+                    <button type="submit" [disabled]="!formRegister.valid" class="btn btn-primary">Registrati</button>
+                </div>
+            </div>
+            &nbsp;
+            <div class="row justify-content-center">
+                <div class="col-12 text-center">
+                    Utente già registrato?
+                    <a routerLink="/login">
+                        Login
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>    
+</div>

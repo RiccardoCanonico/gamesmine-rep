@@ -17,6 +17,7 @@ export class GamePageComponent {
       if(params['id']){
         gameService.getGameById(params['id']).subscribe((serverGame => {
           this.game = serverGame;
+          console.log(this.game);
         }));
       }
     })

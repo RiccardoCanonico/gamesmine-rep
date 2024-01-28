@@ -40,7 +40,7 @@
             &nbsp;
             <div class="resume-info bg-dark">
                 <div class="row resume-info-row" *ngFor="let cartItem of cart.items">
-                    <div class="col-6 text-center">
+                    <div class="col-6 game-name">
                         {{ cartItem.game.name }}
                         <span class="quantity" *ngIf="cartItem.quantity > 1">x{{ cartItem.quantity }}</span>
                     </div>

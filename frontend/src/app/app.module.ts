@@ -17,6 +17,7 @@ import { LoginPageComponent } from './components/pages/login-page/login-page.com
 import { FormsModule } from '@angular/forms';
 import { RegisterPageComponent } from './components/pages/register-page/register-page.component';
 import { PaymentPageComponent } from './components/pages/payment-page/payment-page.component';
+import { OrdersPageComponent } from './components/pages/orders-page/orders-page.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { PaymentPageComponent } from './components/pages/payment-page/payment-pa
     LoginPageComponent,
     RegisterPageComponent,
     PaymentPageComponent,
+    OrdersPageComponent,
   ],
   imports: [
     BrowserModule,

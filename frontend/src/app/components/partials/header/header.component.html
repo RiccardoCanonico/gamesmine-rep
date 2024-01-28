@@ -50,7 +50,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" routerLink="/profile">Profile</a></li>
-                        <li><a class="dropdown-item" routerLink="/orders">Orders</a></li>
+                        <li><a class="dropdown-item" routerLink="/orders/{{user.token}}">Orders</a></li>
                         <li><a *ngIf="user.token" class="dropdown-item" (click)="logout()">Logout</a></li>
                     </ul>
                 </li>

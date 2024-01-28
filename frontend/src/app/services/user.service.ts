@@ -39,8 +39,7 @@ export class UserService {
   register(userRegister:IUserRegister): Observable<User> {
     return this.http.post<User>(USER_REGISTER_URL, userRegister).pipe(tap({
       next: (user) => {
-        this.setUserToLocalStorage(user);
-        this.userSubject.next(user);
+        alert("Registrazione effettuata con successo");
       },
       error: (errorResponse) => {
        alert("Registrazione fallita");

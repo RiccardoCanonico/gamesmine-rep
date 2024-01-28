@@ -35,11 +35,11 @@ export class CartPageComponent {
     }
     
     const newOrder = new Order();
-    for(let i = 0; i < this.cart.items.length; i++){
-      newOrder["games"].push(this.cart.items[i].game.id);
-    }
     newOrder["userId"] = this.userService.currentUser.id;
     newOrder["totalPrice"] = this.cart.totalPrice;
+    for(let i = 0; i < this.cart.items.length; i++){
+      newOrder["gameId"].push(this.cart.items[i].game.id);
+    }
 
     this.orderService.createOrder(newOrder);
     this.router.navigateByUrl("/payment");

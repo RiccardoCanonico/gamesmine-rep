@@ -32,9 +32,9 @@ app.get("/api/games", (req, res) => {
 });
 
 app.get("/api/games/search/:searchTerm", (req, res) => {
-    const searchTerm = req.params.searchTerm;
-    const games = sample_games.filter((game) => game.name.toLowerCase().includes(searchTerm.toLowerCase()));
-    res.send(games);
+    //const searchTerm = req.params.searchTerm;
+    //const games = sample_games.filter((game) => game.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    getGameBySearch(req.params.searchTerm, res);
 });
 
 app.get("/api/games/:gameId", (req, res) => {
@@ -54,6 +54,10 @@ app.post("/api/users/register", (req,res) => {
 app.post("/api/order", (req,res) => {
     let order = req.body;
     addOrder(order, res);
+})
+
+app.get("/api/users/orders/:userToken", (req, res) => {
+    getAllUserOrders(req.params.userToken, res);
 })
 
 const generateTokenResponse = (user) => {
@@ -90,6 +94,17 @@ function getGameById(gameId, res) {
     );
 }
 
+function getGameBySearch(searchTerm, res) {
+    conn.query(`SELECT * FROM game WHERE name LIKE '%${searchTerm}%'`, 
+        function(errSQL, resSQL) {
+            if(errSQL){
+                resSQL = "null";
+            }
+            res.json(resSQL);
+        }
+    );    
+}
+
 function login({email, password}, res){
     let user;
     conn.query(`SELECT * FROM user WHERE email="${email}" AND password="${password}"`, 
@@ -115,7 +130,7 @@ function register(user, res){
     conn.query(`SELECT email FROM user WHERE email="${user.email}"`, 
         (errSQL, resSQL) => {
             if(errSQL){
-                res.end("Error: "+errSQL);
+                resSQL="null";
             }
             else if(resSQL[0]){
                 res.end("User already registered");
@@ -126,7 +141,7 @@ function register(user, res){
                         if(errSQL) 
                             res.end("Error: "+errSQL);
                         else 
-                            res.json(generateTokenResponse(user));
+                            res.json(user);
                     }
                 );
             }
@@ -135,17 +150,68 @@ function register(user, res){
 }
 
 function addOrder(order, res){
-    console.log(order);
-    conn.query(`INSERT INTO orders (userId, games, totalPrice) VALUES (${order.userId}, "[${order.games}]", ${order.totalPrice})`,
+    conn.query(`INSERT INTO orders (userId, totalPrice) VALUES (${order.userId}, ${order.totalPrice})`,
         function(errSQL, resSQL){
             if(errSQL){
                 res.end("Error: "+errSQL);
-                console.log(errSQL);
             }
             else{
-                res.json(order);
+                conn.query(`SELECT LAST_INSERT_ID()`, 
+                    function(errSQL, resSQL){
+                        if(errSQL){
+                            resSQL="null";
+                        }
+                        else{
+                            let last_id = resSQL[0]["LAST_INSERT_ID()"];
+                
+                            let query = `INSERT INTO order_games (orderId, gameId) VALUES `;
+                            for(let i=0; i < order.gameId.length; i++){
+                                if(i == order.gameId.length - 1){
+                                    query+=`(${parseInt(last_id)}, ${order.gameId[i]})`;
+                                }
+                                else{
+                                    query+=`(${parseInt(last_id)}, ${parseInt(order.gameId[i])}), `;
+                                }
+                            }
+                            console.log(query);
+                            conn.query(query, 
+                                function(resSQL, errSQL){
+                                    if(errSQL){
+                                        res.end("Error: "+errSQL);
+                                    }
+                                    else{
+                                        res.json(order);
+                                    }
+                                });
+                        }
+                    });
             }
         } 
+    );
+}
+
+function getAllUserOrders(userToken, res){
+    conn.query(`SELECT id FROM user WHERE token = "${userToken}"`, 
+        function(errSQL, resSQL){
+            if(errSQL){
+                resSQL = "null";
+            }
+            else{
+                let userId;
+                userId = resSQL[0];
+            
+                conn.query(`SELECT * FROM orders WHERE userId = ${userId.id}`,
+                    function(errSQL, resSQL){
+                        if(errSQL){
+                            resSQL="null";
+                        }
+                        else{
+                            res.json(resSQL);
+                        }
+                    }
+                );    
+            }
+        }
     );
 }
 

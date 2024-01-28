@@ -14,7 +14,7 @@ export class RegisterPageComponent {
   constructor(private userService:UserService, private activatedRoute:ActivatedRoute, private router:Router){}
   
   ngOnInit(): void {
-    this.returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'];
+    this.returnUrl = "login";
   }
   
   submit(form: NgForm){

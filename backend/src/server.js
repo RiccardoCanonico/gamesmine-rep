@@ -46,12 +46,12 @@ app.post("/api/users/login", (req, res) => {
     login({email, password}, res);
 });
 
-app.post("/api/users/register", (req,res) => {
+app.post("/api/users/register", (req, res) => {
     let user = req.body;
     register(user, res);
 });
 
-app.post("/api/order", (req,res) => {
+app.post("/api/order", (req, res) => {
     let order = req.body;
     addOrder(order, res);
 })
@@ -162,29 +162,27 @@ function addOrder(order, res){
                             resSQL="null";
                         }
                         else{
-                            let last_id = resSQL[0]["LAST_INSERT_ID()"];
-                
+                            let orderId = resSQL[0]["LAST_INSERT_ID()"];
+                    
                             let query = `INSERT INTO order_games (orderId, gameId) VALUES `;
                             for(let i=0; i < order.gameId.length; i++){
-                                if(i == order.gameId.length - 1){
-                                    query+=`(${parseInt(last_id)}, ${order.gameId[i]})`;
-                                }
-                                else{
-                                    query+=`(${parseInt(last_id)}, ${parseInt(order.gameId[i])}), `;
-                                }
+                                query+=`(${parseInt(orderId)}, ${parseInt(order.gameId[i])}),`;
                             }
-                            console.log(query);
+
+                            query=query.slice(0, -1);
+                           
                             conn.query(query, 
-                                function(resSQL, errSQL){
+                                function(errSQL, resSQL){
                                     if(errSQL){
                                         res.end("Error: "+errSQL);
                                     }
                                     else{
                                         res.json(order);
                                     }
-                                });
+                            });
                         }
-                    });
+                    }
+                );
             }
         } 
     );
@@ -198,18 +196,7 @@ function getAllUserOrders(userToken, res){
             }
             else{
                 let userId;
-                userId = resSQL[0];
-            
-                conn.query(`SELECT * FROM orders WHERE userId = ${userId.id}`,
-                    function(errSQL, resSQL){
-                        if(errSQL){
-                            resSQL="null";
-                        }
-                        else{
-                            res.json(resSQL);
-                        }
-                    }
-                );    
+                userId = resSQL[0];    
             }
         }
     );

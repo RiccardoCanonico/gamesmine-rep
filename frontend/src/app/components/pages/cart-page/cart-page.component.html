@@ -32,7 +32,7 @@
                         </div>
                     </div>
                     <div class="price col-2 text-center">
-                        <span>{{ cartItem.price | currency }}</span>
+                        <span>{{ cartItem.price | currency:"EUR" }}</span>
                     </div>
                     <hr class="hr border-2">
                 </div>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="row bg-dark row-total-price">
                     <div class="col-12">
-                        Prezzo totale: {{ cart.totalPrice | currency }}
+                        Prezzo totale: {{ cart.totalPrice | currency:"EUR" }}
                     </div>
                 </div>
                 <div class="row bg-dark row-checkout-button">

@@ -45,13 +45,13 @@
                         <span class="quantity" *ngIf="cartItem.quantity > 1">x{{ cartItem.quantity }}</span>
                     </div>
                     <div class="col-6 text-end">
-                        <span class="price">{{ cartItem.price | currency }}</span>
+                        <span class="price">{{ cartItem.price | currency:"EUR"}}</span>
                     </div>
                 </div>
                 <hr class="hr border-2">
                 <div class="row">
                     <div class="col-12 text-center resume-price">
-                        <div>Totale: {{ cart.totalPrice | currency }}</div>
+                        <div>Totale: {{ cart.totalPrice | currency:"EUR" }}</div>
                     </div>
                 </div>
             </div>

@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import { USER_LOGIN_URL } from '../shared/constants/url';
 import { USER_REGISTER_URL } from '../shared/constants/url';
 import { IUserRegister } from '../shared/Interfaces/IUserRegister';
+import { Router } from '@angular/router';
+import { CartService } from './cart.service';
 
 const USER_KEY = 'User';
 @Injectable({
@@ -15,7 +17,7 @@ export class UserService {
   private userSubject = new BehaviorSubject<User>(this.getUserFromLocalStorage())
   public userObservable:Observable<User>;
 
-  constructor(private http:HttpClient){
+  constructor(private http:HttpClient, private router:Router, private cartService:CartService){
     this.userObservable = this.userSubject.asObservable();
   }
 
@@ -50,7 +52,8 @@ export class UserService {
   logout(){
     this.userSubject.next(new User());
     localStorage.removeItem(USER_KEY);
-    window.location.reload();
+    this.cartService.clearCart();
+    this.router.navigateByUrl('');
   }
 
   private setUserToLocalStorage(user:User){

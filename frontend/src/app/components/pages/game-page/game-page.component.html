@@ -1,10 +1,10 @@
 <app-not-found [visible] = "!game" notFoundMessage="Game not found" resetLinkText="Back to Homepage"></app-not-found>
 <div *ngIf="game" class="container">
-    <div class="row">
-        <div class="col-lg-6 col-sm-12">
+    <div class="row justify-content-around">
+        <div class="col-lg-5 img-container col-sm-12">
             <img [src]="game.imageUrl" [alt]="game.name" />           
         </div>
-        <div class="col-lg-6 col-sm-12 info-container bg-dark">
+        <div class="col-lg-5 col-sm-12 info-container bg-dark">
             <div class="row">
                 <div class="col-12 text-center">
                     <span class="name">
@@ -37,8 +37,8 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12 description">  
+    <div class="row justify-content-center">
+        <div class="col-11 description text-center">  
             {{game.description}}
         </div>
     </div>

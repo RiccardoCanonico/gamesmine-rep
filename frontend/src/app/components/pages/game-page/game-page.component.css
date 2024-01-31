@@ -4,6 +4,11 @@
 
 .info-container{
     border-radius: 0.5rem;
+    padding: 0rem;
+}
+
+.img-container{
+    padding: 0;
 }
 
 /*.container > *{

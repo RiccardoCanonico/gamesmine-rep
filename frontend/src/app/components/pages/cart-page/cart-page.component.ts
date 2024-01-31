@@ -33,15 +33,22 @@ export class CartPageComponent {
     if(this.userService.currentUser.id == undefined){
       this.router.navigateByUrl("/login");
     }
-    
-    const newOrder = new Order();
+
+    let userId = this.userService.currentUser.id;
+    let totalPrice = this.cart.totalPrice;
+    let gameId:number[] = [];
+    for(let i = 0; i < this.cart.items.length; i++){
+      gameId.push(this.cart.items[i].game.id);
+    }
+
+    /*const newOrder = new Order();
     newOrder["userId"] = this.userService.currentUser.id;
     newOrder["totalPrice"] = this.cart.totalPrice;
     for(let i = 0; i < this.cart.items.length; i++){
       newOrder["gameId"].push(this.cart.items[i].game.id);
-    }
+    }*/ 
 
-    this.orderService.createOrder(newOrder);
+    this.orderService.createOrder({userId, totalPrice, gameId});
     this.router.navigateByUrl("/payment");
   }
 }

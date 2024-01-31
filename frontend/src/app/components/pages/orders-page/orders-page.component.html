@@ -1,5 +1,29 @@
+<app-not-found [visible] = "!orders || !orders.length" notFoundMessage = "Non è stato fatto ancora nessun ordine!" resetLinkText = "Torna alla home">
+</app-not-found>
+
 <div class="container">
-    <div class="row">
-        
+    &nbsp;
+    <div class="order" *ngFor="let order of orders; index as i">
+        <div class="row">
+            <div class="col-2">
+                <img [src]="order.imageUrl" [alt]="order.name">
+            </div>
+            <div class="col-6 name">
+                {{ order.name }}
+            </div>
+        </div>
+        &nbsp;
+        <div class="row" *ngIf="!orders[i+1] || order.id != orders[i+1].id">
+            <div class="col-6 total">
+                Totale: {{ order.totalPrice | currency:"EUR" }}
+            </div>
+            <div class="col-6 text-end order-number align-text-bottom">
+                Ordine n. {{ order.id }}
+            </div>
+            <div class="col-12">
+                <hr class="hr border-2">
+            </div>
+        </div>       
+        &nbsp;
     </div>
 </div>

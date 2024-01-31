@@ -1,0 +1,27 @@
+.order img {
+    width: 13rem;
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.order .total {
+    font-size: 1.5rem;
+    font-weight: bold;
+    /*color: #ffffff;*/
+}
+
+.order .order-number {
+    font-size: 1rem;
+    /*color: #ffffff;*/
+}
+
+.order .name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    /*color: #ffffff;*/
+    margin-top: 0.5rem;
+}
+
+hr {
+    color: #ff4d4d;
+}

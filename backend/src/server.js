@@ -52,8 +52,8 @@ app.post("/api/users/register", (req, res) => {
 });
 
 app.post("/api/order", (req, res) => {
-    let order = req.body;
-    addOrder(order, res);
+    const {userId, gameId, totalPrice} = req.body;
+    addOrder({userId, gameId, totalPrice}, res);
 })
 
 app.get("/api/users/orders/:userToken", (req, res) => {
@@ -136,6 +136,7 @@ function register(user, res){
                 res.end("User already registered");
             }
             else{
+                password_hash = 
                 conn.query(`INSERT INTO user (email, password, name, address, isAdmin) VALUES ("${user.email}", "${user.password}", "${user.name}", "${user.address}", 0)`,
                     function(errSQL, resSQL){
                         if(errSQL) 
@@ -149,8 +150,8 @@ function register(user, res){
     );
 }
 
-function addOrder(order, res){
-    conn.query(`INSERT INTO orders (userId, totalPrice) VALUES (${order.userId}, ${order.totalPrice})`,
+function addOrder({userId, gameId, totalPrice}, res){
+    conn.query(`INSERT INTO orders (userId, totalPrice) VALUES (${userId}, ${totalPrice})`,
         function(errSQL, resSQL){
             if(errSQL){
                 res.end("Error: "+errSQL);
@@ -165,8 +166,8 @@ function addOrder(order, res){
                             let orderId = resSQL[0]["LAST_INSERT_ID()"];
                     
                             let query = `INSERT INTO order_games (orderId, gameId) VALUES `;
-                            for(let i=0; i < order.gameId.length; i++){
-                                query+=`(${parseInt(orderId)}, ${parseInt(order.gameId[i])}),`;
+                            for(let i=0; i < gameId.length; i++){
+                                query+=`(${parseInt(orderId)}, ${parseInt(gameId[i])}),`;
                             }
 
                             query=query.slice(0, -1);
@@ -177,7 +178,7 @@ function addOrder(order, res){
                                         res.end("Error: "+errSQL);
                                     }
                                     else{
-                                        res.json(order);
+                                        res.json({userId, gameId, totalPrice});
                                     }
                             });
                         }
@@ -196,7 +197,18 @@ function getAllUserOrders(userToken, res){
             }
             else{
                 let userId;
-                userId = resSQL[0];    
+                userId = resSQL[0]["id"];
+                conn.query(`SELECT orders.id, userId, totalPrice, name, imageUrl FROM ((orders INNER JOIN order_games ON orders.id = order_games.orderId) INNER JOIN game ON order_games.gameId = game.id) WHERE userId=${userId} ORDER BY orders.id`,
+                    function(errSQL, resSQL){
+                        if(errSQL){
+                            resSQL = "null";
+                        }
+                        else{
+                            res.json(resSQL);
+                        }
+                    }
+                );
+                 
             }
         }
     );

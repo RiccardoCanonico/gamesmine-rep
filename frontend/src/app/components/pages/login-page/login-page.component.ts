@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
-
+import { SHA256, enc } from 'crypto-js';
 
 @Component({
   selector: 'app-login-page',
@@ -22,6 +22,9 @@ export class LoginPageComponent implements OnInit {
     let email=form.value.email;
     let password=form.value.password;
 
+    password = SHA256(password).toString(enc.Hex); 
+    console.log(password);
+    
     this.userService.login({email, password}).subscribe(() => {
       this.router.navigateByUrl(this.returnUrl);
     });

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { SHA256, enc } from 'crypto-js';
 
 @Component({
   selector: 'app-register-page',
@@ -22,6 +23,8 @@ export class RegisterPageComponent {
     let password=form.value.password;
     let name=form.value.name;
     let address=form.value.address;
+
+    password = SHA256(password).toString(enc.Hex); 
 
     this.userService.register({email, password, name, address}).subscribe(() => {
       this.router.navigateByUrl(this.returnUrl);

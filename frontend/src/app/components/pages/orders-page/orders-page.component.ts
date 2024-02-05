@@ -15,7 +15,6 @@ export class OrdersPageComponent {
     activatedRoute.params.subscribe((params) => {
       orderService.getAllOrders(params["userToken"]).subscribe((serverOrders) => {
         this.orders = serverOrders;
-        console.log(this.orders);
       });
     })
   }

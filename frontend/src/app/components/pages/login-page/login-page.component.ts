@@ -23,10 +23,14 @@ export class LoginPageComponent implements OnInit {
     let password=form.value.password;
 
     password = SHA256(password).toString(enc.Hex); 
-    console.log(password);
     
     this.userService.login({email, password}).subscribe(() => {
-      this.router.navigateByUrl(this.returnUrl);
+      if(this.userService.currentUser.isAdmin){
+        this.router.navigateByUrl('/admin');        
+      }
+      else{
+        this.router.navigateByUrl(this.returnUrl);
+      }  
     });
   }
 }

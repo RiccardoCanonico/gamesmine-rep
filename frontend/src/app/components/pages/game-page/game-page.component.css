@@ -11,11 +11,6 @@
     padding: 0;
 }
 
-/*.container > *{
-    min-width: 25rem;
-    max-width: 40rem;
-}*/
-
 img{
     border-radius: 0.5rem;
     height: 22.8rem;
@@ -48,8 +43,18 @@ img{
 }
 
 .price::before{
-    content: "Price: ";
-    color: darkgrey;
+    content: "Prezzo: ";
+    color: #ffffff;
+}
+
+.rating{
+    color: #ffffff;
+    font-size: 1.5rem;
+}
+
+.rating::before{
+    content: "Valutazione: ";
+    color: #ffffff;
 }
 
 .btn{
@@ -74,62 +79,9 @@ img{
     background-color: rgb(228, 228, 228);
     border-radius: 0.5rem;
 }
-/*.details{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    flex: 1 0;
-    padding: 2rem;
-    color: black;
-    margin-left: 1rem;
+
+fa-icon{
+    color: #ffff00;
+    font-size: 20px;
 }
 
-.header{
-    display: flex;
-    justify-content: space-between;
-}
-
-.name{
-    font-size: 2rem;
-    font-weight: bold;
-}
-
-.genre{
-    display: flex;
-    flex-wrap: wrap;
-    margin: 1rem 0;
-}
-
-.genre span{
-    padding: 0.5rem;
-    font-size: 1.2rem;
-    margin: 0.5rem 0.5rem 0.5rem 0;
-    border-radius: 2rem;
-    background-color: aliceblue;
-}
-
-.price{
-    font-size: 1.8rem;
-    margin: 2rem 2rem 2rem 0;
-    color: green;
-}
-
-.price::before{
-    content: "Price: ";
-    color: darkgrey;
-}
-
-button{
-    color: white;
-    background: #e72929;
-    border: none;
-    font-size: 1.2rem;
-    padding: 1rem;
-    border-radius: 10rem;
-    outline: none;
-}
-
-button:hover{
-    opacity: 0.9;
-    cursor: pointer;
-}*/

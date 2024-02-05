@@ -40,11 +40,11 @@ export class UserService {
 
   register(userRegister:IUserRegister): Observable<User> {
     return this.http.post<User>(USER_REGISTER_URL, userRegister).pipe(tap({
-      next: (user) => {
+      next: () => {
         alert("Registrazione effettuata con successo");
       },
-      error: (errorResponse) => {
-       alert("Registrazione fallita");
+      error: () => {
+       alert("Utente già registrato");
       }
     }));
   }

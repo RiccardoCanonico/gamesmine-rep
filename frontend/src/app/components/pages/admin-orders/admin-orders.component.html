@@ -1,0 +1,25 @@
+<div class="container">
+    &nbsp;
+    <div class="row">
+        <table class="table">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Prezzo totale</th>
+                    <th scope="col">Gioco</th>
+                    <th scope="col">Id Utente</th> 
+                    <th scope="col">Email utente</th>        
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let order of orders" class="text-center">
+                    <th scope="row">{{ order.id }}</th>
+                    <td>{{ order.totalPrice | currency:"EUR" }}</td>
+                    <td>{{ order.name }}</td>
+                    <td>{{ order.userId }}</td>
+                    <td>{{ order.email }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -22,19 +22,26 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 text-center">
-                    <div class="price">
-                        <span>
-                            {{game.price | currency:"EUR"}} 
-                        </span>
-                    </div>
+                <div class="col-12 text-center rating">     
+                    <span>
+                        {{game.stars}}
+                        <fa-icon [icon]="['fas', 'star']"></fa-icon> 
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center price">     
+                    <span>
+                        {{game.price | currency:"EUR"}} 
+                    </span>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 text-center">
-                    <button (click)="addToCart()" type="button" class="btn">Aggiungi al carrello</button>
+                    <button (click)="addToCart()" class="btn">Aggiungi al carrello</button>
                 </div>
             </div>
+            &nbsp;
         </div>
     </div>
     <div class="row justify-content-center">

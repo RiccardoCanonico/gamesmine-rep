@@ -1,0 +1,35 @@
+h1{
+    font-weight: bold;
+}
+
+.btn{  
+    border-radius: 10rem;
+    background-color: #ff4d4d;
+    font-size: 1rem;
+    width: 100%;
+    color: #ffffff;
+}
+
+.update{
+    border-radius: 10rem;
+    background-color: #33cc00;
+    font-size: 1rem;
+    width: 100%;
+    color: #ffffff;
+}
+
+.btn:hover{
+    background-color: #942626;
+}
+
+.update:hover{
+    background-color: #1a6600;
+}
+
+.delete-cell{
+    border: none;
+}
+
+.update-cell{
+    border: none;
+}

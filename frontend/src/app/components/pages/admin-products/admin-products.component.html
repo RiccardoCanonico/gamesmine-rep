@@ -1,0 +1,71 @@
+<div class="container">
+    &nbsp;
+    <div class="row">
+        <table class="table">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Prezzo</th>
+                    <th scope="col">Generi</th> 
+                    <th scope="col">Valutazione</th>        
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let game of games" class="text-center">
+                    <th scope="row">{{ game.id }}</th>
+                    <td>{{ game.name }}</td>
+                    <td>{{ game.price | currency:"EUR" }}</td>
+                    <td>{{ game.genre }}</td>
+                    <td>{{ game.stars }}</td>
+                    <td class="delete-cell">
+                        <button type="button" (click)="deleteProduct(game.id)" class="btn delete">Elimina</button>
+                    </td>
+                    <td class="update-cell">
+                        <button type="update" class="btn update" routerLink="update-product/{{ game.id }}">Aggiorna</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    &nbsp;
+    <div class="row">
+        <div class="col-12">
+            <h1>Nuovo prodotto</h1>
+        </div>
+    </div>
+    <form #formProduct="ngForm" (ngSubmit)="submit(formProduct)">
+        <div class="row">
+                <div class="col-6">
+                    <label class="form-label">Nome</label>
+                    <input type="text" class="form-control" name="name" ngModel required>
+                </div>
+                <div class="col-6">
+                    <label class="form-label">Prezzo</label>
+                    <input type="number" class="form-control" name="price" ngModel required>
+                </div>
+                <div class="col-6">
+                    <label class="form-label">Generi</label>
+                    <input type="text" class="form-control" name="genre" ngModel required>
+                </div>
+                <div class="col-6">
+                    <label class="form-label">Url Immagine</label>
+                    <input type="text" class="form-control" name="imageUrl" ngModel required>
+                </div>
+                <div class="col-6">
+                    <label class="form-label">Valutazione</label>
+                    <input type="number" class="form-control" name="stars" ngModel  min="0" max="5" pattern="[0-9]" required>
+                </div>
+                <div class="col-6">
+                    <label class="form-label">Descrizione</label>
+                    <textarea class="form-control" rows="3" name="description" ngModel required></textarea>
+                </div>
+                &nbsp;
+        </div>
+        <div class="row justify-content-center">  
+            <div class="col-5">
+                <button type="submit" [disabled]="!formProduct.valid" class="btn">Inserisci</button>
+            </div>
+        </div>      
+    </form>
+</div>

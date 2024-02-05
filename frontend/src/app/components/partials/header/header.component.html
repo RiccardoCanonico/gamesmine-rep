@@ -25,19 +25,19 @@
 </header>-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" routerLink="/">
+        <a class="navbar-brand" [routerLink]="!user.isAdmin ? ['/'] : ['/admin']">
             <img src="./assets/img/site_icon.png" alt="logo" class="d-inline-block" width="35" height="35">
             Questify
         </a>
         <form class="col-5">
-            <app-search></app-search>
+            <app-search *ngIf="!user.isAdmin"></app-search>
         </form>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end flex-grow-0" id="navbarScroll">
             <ul class="navbar-nav navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="!user.isAdmin">
                     <a class="nav-link" routerLink="/cart-page">
                         <fa-icon [icon]="['fas', 'cart-shopping']"></fa-icon>
                         Cart<span *ngIf="cartQuantity">{{ cartQuantity }}</span>
@@ -49,7 +49,7 @@
                         {{user.name}}
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" routerLink="/orders/{{user.token}}">Ordini</a></li>
+                        <li><a class="dropdown-item" routerLink="/orders/{{user.token}}" *ngIf="!user.isAdmin">Ordini</a></li>
                         <li><a *ngIf="user.token" class="dropdown-item" (click)="logout()">Logout</a></li>
                     </ul>
                 </li>

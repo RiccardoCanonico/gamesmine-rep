@@ -1,6 +1,1 @@
--aggiungere valutazione associata al gioco nella pagina del gioco
--filtro per generi (se possibile)
--filtro per prezzo
--aggiungere icona di una stella vicino alle valutazioni dei giochi
--aggiungere footer
--modificare eliminazione gioco
+-aggiungere data ordine

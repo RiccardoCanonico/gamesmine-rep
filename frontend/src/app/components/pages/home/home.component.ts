@@ -25,7 +25,33 @@ export class HomeComponent implements OnInit{
       })
     });
   }
-  
+
   ngOnInit(): void { 
+  }
+
+  filterPrice(){
+    let price = <HTMLInputElement>document.getElementById('price');
+    let alphabet = <HTMLInputElement>document.getElementById('alphabet');
+    
+    if(price.checked == true){
+      alphabet.disabled = true;
+      this.games = this.games.sort((a, b) => a.price-b.price);
+    }
+    else{
+      window.location.reload();
+    }
+  }
+
+  filterByAlphabeticalOrder(){
+    let price = <HTMLInputElement>document.getElementById('price');
+    let alphabet = <HTMLInputElement>document.getElementById('alphabet');
+
+    if(alphabet.checked == true){
+      price.disabled = true;
+      this.games = this.games.sort((a, b) => (a.name > b.name)?1:-1);
+    }
+    else{
+      window.location.reload();
+    }
   }
 }

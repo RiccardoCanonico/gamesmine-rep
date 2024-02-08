@@ -16,6 +16,7 @@ export class OrderService {
 
     createOrder(order:IOrder):void{
         this.orderInt = order;
+        console.log(this.orderInt.date);
     }
 
     insertOrder(): Observable<Order>{
@@ -25,7 +26,5 @@ export class OrderService {
     getAllOrders(token:string):Observable<Order[]>{
         return this.http.get<Order[]>(USER_ORDER_URL + token);
     }
-
-    
 
 }

@@ -12,7 +12,7 @@ export class AdminProductsComponent {
   games!:Game[];
   
   constructor(private adminService:AdminService){
-    adminService.getAllGames().subscribe((serverGames) => {
+    adminService.getAllGamesAdmin().subscribe((serverGames) => {
       this.games = serverGames;
     });
   }
@@ -43,5 +43,11 @@ export class AdminProductsComponent {
     this.adminService.deleteProduct(gameId).subscribe(() => {
       window.location.reload();
     });
+  }
+
+  changeProductAvailability(gameId:number){
+    this.adminService.changeProductAvailability(gameId).subscribe(() => {
+      window.location.reload();
+    })
   }
 }

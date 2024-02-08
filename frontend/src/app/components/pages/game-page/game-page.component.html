@@ -25,20 +25,25 @@
                 <div class="col-12 text-center rating">     
                     <span>
                         {{game.stars}}
-                        <fa-icon [icon]="['fas', 'star']"></fa-icon> 
+                        <fa-icon class="star" [icon]="['fas', 'star']"></fa-icon> 
                     </span>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" *ngIf="game.availability">
                 <div class="col-12 text-center price">     
                     <span>
                         {{game.price | currency:"EUR"}} 
                     </span>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" *ngIf="game.availability">
                 <div class="col-12 text-center">
                     <button (click)="addToCart()" class="btn">Aggiungi al carrello</button>
+                </div>
+            </div>
+            <div class="row" *ngIf="!game.availability">
+                <div class="col-12 text-center availability">
+                    <fa-icon [icon]="['fas', 'x']" class="cross"></fa-icon> Non Disponibile
                 </div>
             </div>
             &nbsp;

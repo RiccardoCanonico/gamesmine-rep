@@ -6,4 +6,5 @@ export class Game{
     imageUrl!:string;
     stars!:number;
     description!:string;
+    availability!:boolean;
 }

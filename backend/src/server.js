@@ -32,8 +32,6 @@ app.get("/api/games", (req, res) => {
 });
 
 app.get("/api/games/search/:searchTerm", (req, res) => {
-    //const searchTerm = req.params.searchTerm;
-    //const games = sample_games.filter((game) => game.name.toLowerCase().includes(searchTerm.toLowerCase()));
     getGameBySearch(req.params.searchTerm, res);
 });
 
@@ -52,13 +50,17 @@ app.post("/api/users/register", (req, res) => {
 });
 
 app.post("/api/order", (req, res) => {
-    const {userId, gameId, totalPrice} = req.body;
-    addOrder({userId, gameId, totalPrice}, res);
+    const {userId, gameId, totalPrice, date} = req.body;
+    addOrder({userId, gameId, totalPrice, date}, res);
 })
 
 app.get("/api/users/orders/:userToken", (req, res) => {
     getAllUserOrders(req.params.userToken, res);
 })
+
+app.get("/api/admin/games", (req, res) => {
+    getAllGamesAdmin(res);
+});
 
 app.get("/api/admin/orders", (req, res) => {
     getAllOrdersAdmin(res);
@@ -75,6 +77,10 @@ app.post("/api/admin/insert-product", (req, res) => {
 
 app.delete("/api/admin/delete-product/:gameId", (req, res) => {
     deleteProduct(req.params.gameId, res);
+})
+
+app.put("/api/admin/product-availability/:gameId", (req, res) => {
+    changeProductAvailability(req.params.gameId, res);
 })
 
 app.put("/api/admin/update-product/:gameId", (req, res) => {
@@ -95,7 +101,7 @@ const generateTokenResponse = (user) => {
 
 
 function getAllGames(res) {
-    conn.query("SELECT * FROM game", 
+    conn.query("SELECT * FROM game WHERE availability=1", 
         function(errSQL, resSQL) {
             if(errSQL) {
                 resSQL="null";
@@ -171,11 +177,11 @@ function register(user, res){
     );
 }
 
-function addOrder({userId, gameId, totalPrice}, res){
-    conn.query(`INSERT INTO orders (userId, totalPrice) VALUES (${userId}, ${totalPrice})`,
+function addOrder({userId, gameId, totalPrice, date}, res){
+    conn.query(`INSERT INTO orders (userId, totalPrice, date) VALUES (${userId}, ${totalPrice}, "${date}")`,
         function(errSQL, resSQL){
             if(errSQL){
-                res.end("Error: "+errSQL);
+                console.log(res.end("Error: "+errSQL));
             }
             else{
                 conn.query(`SELECT LAST_INSERT_ID()`, 
@@ -219,7 +225,7 @@ function getAllUserOrders(userToken, res){
             else{
                 let userId;
                 userId = resSQL[0]["id"];
-                conn.query(`SELECT orders.id, userId, totalPrice, name, imageUrl FROM ((orders INNER JOIN order_games ON orders.id = order_games.orderId) INNER JOIN game ON order_games.gameId = game.id) WHERE userId=${userId} ORDER BY orders.id`,
+                conn.query(`SELECT orders.id, userId, totalPrice, name, imageUrl, date FROM ((orders INNER JOIN order_games ON orders.id = order_games.orderId) INNER JOIN game ON order_games.gameId = game.id) WHERE userId=${userId} ORDER BY orders.id`,
                     function(errSQL, resSQL){
                         if(errSQL){
                             resSQL = "null";
@@ -235,8 +241,19 @@ function getAllUserOrders(userToken, res){
     );
 }
 
+function getAllGamesAdmin(res){
+    conn.query("SELECT * FROM game", 
+    function(errSQL, resSQL) {
+        if(errSQL) {
+            resSQL="null";
+        } 
+        res.json(resSQL);
+    }
+);
+}
+
 function getAllOrdersAdmin(res){
-    conn.query(`SELECT orders.id, userId, totalPrice, game.name, imageUrl, email FROM user, ((orders INNER JOIN order_games ON orders.id = order_games.orderId) INNER JOIN game ON order_games.gameId = game.id) WHERE orders.userId = user.id ORDER BY orders.id`,
+    conn.query(`SELECT orders.id, userId, totalPrice, game.name, imageUrl, email, date FROM user, ((orders INNER JOIN order_games ON orders.id = order_games.orderId) INNER JOIN game ON order_games.gameId = game.id) WHERE orders.userId = user.id ORDER BY orders.id`,
         function(errSQL, resSQL){
             if(errSQL){
                 resSQL = "null";
@@ -304,6 +321,39 @@ function deleteProduct(gameId, res){
                    }
                 );
             }
+        }
+    );
+}
+
+function changeProductAvailability(gameId, res){
+    conn.query(`SELECT availability FROM game WHERE id = ${gameId}`, 
+        function(errSQL, resSQL){
+            let availability=resSQL[0]["availability"];
+            if(availability == 1){
+                conn.query(`UPDATE game SET availability=0 WHERE id = ${gameId}`, 
+                    function(errSQL, resSQL){
+                        if(errSQL){
+                            res.end("Error: "+resSQL);
+                        }
+                        else{
+                            res.json("Product availability changed");
+                        }
+                    }
+                );
+            }
+            else if(availability == 0){
+                conn.query(`UPDATE game SET availability=1 WHERE id = ${gameId}`, 
+                    function(errSQL, resSQL){
+                        if(errSQL){
+                            res.end("Error: "+resSQL);
+                        }
+                        else{
+                            res.json("Product availability changed");
+                        }
+                    }
+                );
+            }
+            
         }
     );
 }

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Game } from '../shared/models/Game';
-import { sample_games } from 'src/data';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { GAMES_BY_ID, GAMES_BY_SEARCH_URL, GAMES_URL } from '../shared/constants/url';

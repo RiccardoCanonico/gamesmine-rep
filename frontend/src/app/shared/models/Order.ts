@@ -5,4 +5,5 @@ export class Order{
     totalPrice!:number;
     name?:string;
     imageUrl?:string;
+    date!:string;
 }

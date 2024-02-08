@@ -23,6 +23,7 @@ import { AdminOrdersComponent } from './components/pages/admin-orders/admin-orde
 import { AdminUsersComponent } from './components/pages/admin-users/admin-users.component';
 import { AdminProductsComponent } from './components/pages/admin-products/admin-products.component';
 import { AdminUpdateProductComponent } from './components/pages/admin-update-product/admin-update-product.component';
+import { FooterComponent } from './components/partials/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { AdminUpdateProductComponent } from './components/pages/admin-update-pro
     AdminUsersComponent,
     AdminProductsComponent,
     AdminUpdateProductComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

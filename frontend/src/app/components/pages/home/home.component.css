@@ -1,12 +1,3 @@
-/*ul{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    list-style-type: none;
-    padding: 0;
-}*/
-
 a{
     border-radius: 0.5rem;
     margin-top: 1.3rem;
@@ -23,44 +14,6 @@ a:hover{
 a img{
     height: 14.5rem;
 }
-
-/*.content{
-    margin-top: 0.3rem;
-    padding: 0.5rem 1rem;
-    position: relative;
-    height: 7rem
-}
-
-.product-item-footer{
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.genre{
-    flex: 9;
-}
-
-.genre span{
-    border-radius: 2rem;
-    background-color: whitesmoke;
-    display: inline-block;
-    font-size: 0.8rem;
-    color: grey;
-    margin-right: 0.3rem;
-    padding: 0 0.5rem;
-    margin-top: 0.2rem;
-}
-
-.stars{
-    position: absolute;
-    bottom: 2rem;
-    left: 0.9rem;
-    background: white;
-    color: #414141;
-    margin-top: 0.7rem;
-    font-size: 1.1rem;  
-}*/
 
 .price{
     background: white;

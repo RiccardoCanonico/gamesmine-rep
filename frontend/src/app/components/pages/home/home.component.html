@@ -1,32 +1,17 @@
-<!-- <ul>
-    <li *ngFor="let game of games">
-        <a routerLink="/game/{{game.id}}">
-            <img [src]="game.imageUrl" [alt]="game.id"/>
-            <div class="content">
-                <div class="name">
-                   {{game.name}} 
-                </div>
-                <div class="product-item-footer">
-                    <div class="genre">
-                        <span *ngFor="let genre of game.genre">
-                           {{genre}}
-                        </span>
-                    </div>
-                    <div class="stars">
-                        <span>Rating: {{game.stars}}/5</span>
-                    </div>
-                    <div class="price">
-                        <span>
-                            {{game.price | currency}}
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
-</ul> -->
 <app-not-found [visible] = "!games || !games.length" resetLinkText="Reset search"></app-not-found>
 <div class="container">
+    &nbsp;
+    <div class="row filters">
+        <div class="col-1">Ordina per:</div>
+        <div class="col-lg-1 col-sm-12">
+             <input type="checkbox" name="price" id="price" class="form-check-input" (click)="filterPrice()">
+            <label class="form-check-label" for="price">Prezzo</label>
+        </div>
+        <div class="col-lg-2 col-sm-12">
+            <input type="checkbox" name="alphabet" id="alphabet" class="form-check-input" (click)="filterByAlphabeticalOrder()">
+            <label class="form-check-label" for="alphabet">Ordine alfabetico</label>
+        </div> 
+    </div>
     <div class="row">
         <div class="col-lg-4 col-md-6" *ngFor="let game of games">
             <div class="row">

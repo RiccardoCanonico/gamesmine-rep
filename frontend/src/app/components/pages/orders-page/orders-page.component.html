@@ -14,10 +14,13 @@
         </div>
         &nbsp;
         <div class="row" *ngIf="!orders[i+1] || order.id != orders[i+1].id">
-            <div class="col-6 total">
+            <div class="col-12 total">
                 Totale: {{ order.totalPrice | currency:"EUR" }}
             </div>
-            <div class="col-6 text-end order-number align-text-bottom">
+            <div class="col-6">             
+                {{ order.date }}      
+            </div>
+            <div class="col-6 text-end order-number">
                 Ordine n. {{ order.id }}
             </div>
             <div class="col-12">

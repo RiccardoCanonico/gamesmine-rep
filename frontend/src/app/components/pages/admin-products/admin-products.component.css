@@ -18,7 +18,15 @@ h1{
     color: #ffffff;
 }
 
-.btn:hover{
+.change{
+    border-radius: 10rem;
+    background-color: #ffff00;
+    font-size: 1rem;
+    width: 100%;
+    color: #000000;
+}
+
+.delete:hover{
     background-color: #942626;
 }
 
@@ -26,10 +34,18 @@ h1{
     background-color: #1a6600;
 }
 
+.change:hover{
+    background-color: #cccc00;
+}
+
 .delete-cell{
     border: none;
 }
 
 .update-cell{
+    border: none;
+}
+
+.change-cell{
     border: none;
 }

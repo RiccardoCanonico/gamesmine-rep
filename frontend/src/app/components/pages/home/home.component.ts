@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { GamesService } from 'src/app/services/games.service';
@@ -9,8 +9,11 @@ import { Game } from 'src/app/shared/models/Game';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent {
   games:Game[] = [];
+  @ViewChild('checkPrice') checkPrice!: ElementRef;
+  @ViewChild('checkAlphabet') checkAlphabet!: ElementRef;
+
   constructor(private gameService:GamesService, activatedRoute:ActivatedRoute){
     let gamesObservable:Observable<Game[]>;
     activatedRoute.params.subscribe((params) => {
@@ -26,15 +29,9 @@ export class HomeComponent implements OnInit{
     });
   }
 
-  ngOnInit(): void { 
-  }
-
   filterPrice(){
-    let price = <HTMLInputElement>document.getElementById('price');
-    let alphabet = <HTMLInputElement>document.getElementById('alphabet');
-    
-    if(price.checked == true){
-      alphabet.disabled = true;
+    if(this.checkPrice.nativeElement.checked == true){
+      this.checkAlphabet.nativeElement.disabled = true;
       this.games = this.games.sort((a, b) => a.price-b.price);
     }
     else{
@@ -43,11 +40,8 @@ export class HomeComponent implements OnInit{
   }
 
   filterByAlphabeticalOrder(){
-    let price = <HTMLInputElement>document.getElementById('price');
-    let alphabet = <HTMLInputElement>document.getElementById('alphabet');
-
-    if(alphabet.checked == true){
-      price.disabled = true;
+    if(this.checkAlphabet.nativeElement.checked == true){
+      this.checkPrice.nativeElement.disabled = true;
       this.games = this.games.sort((a, b) => (a.name > b.name)?1:-1);
     }
     else{

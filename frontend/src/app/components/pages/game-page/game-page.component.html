@@ -1,4 +1,4 @@
-<app-not-found [visible] = "!game" notFoundMessage="Game not found" resetLinkText="Back to Homepage"></app-not-found>
+<app-not-found [visible] = "!game" notFoundMessage="Gioco non trovato" resetLinkText="Torna alla home"></app-not-found>
 <div *ngIf="game" class="container">
     <div class="row justify-content-around">
         <div class="col-lg-5 img-container col-sm-12">
@@ -55,26 +55,3 @@
         </div>
     </div>
 </div>
-
-<!-- <img [src]="game.imageUrl" [alt]="game.name" />
-<div class="details">
-    <div class="header">
-        <span class="name">
-            {{game.name}}
-        </span>
-    </div>
-    <div class="rating">
-        <span>Rating: {{game.stars}}/5</span>
-    </div>
-    <div class="genre">
-        <span *ngFor="let genre of game.genre">
-            {{genre}}
-        </span>
-    </div>
-    <div class="price">
-        <span>
-            {{game.price | currency}} 
-        </span>
-    </div>
-    <button>Add to cart</button>
-</div> -->

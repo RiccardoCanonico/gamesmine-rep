@@ -12,7 +12,7 @@ app.use(cors({
     origin:["http://localhost:4200"]
 }));
 
-let conn = mysql.createConnection({
+let conn = mysql.createConnection({      
     host: "localhost",
     user: "root",
     password: "Riccardo.2001",
@@ -98,7 +98,6 @@ const generateTokenResponse = (user) => {
     user.token = token;
     return user;
 };
-
 
 function getAllGames(res) {
     conn.query("SELECT * FROM game WHERE availability=1", 

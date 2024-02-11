@@ -1,14 +1,14 @@
-<app-not-found [visible] = "!games || !games.length" resetLinkText="Reset search"></app-not-found>
+<app-not-found [visible] = "!games || !games.length" notFoundMessage="Non è stato trovato niente" resetLinkText="Torna alla home"></app-not-found>
 <div class="container">
     &nbsp;
     <div class="row filters">
         <div class="col-1">Ordina per:</div>
         <div class="col-lg-1 col-sm-12">
-             <input type="checkbox" name="price" id="price" class="form-check-input" (click)="filterPrice()">
+             <input type="checkbox" name="price" id="price" class="form-check-input" (click)="filterPrice()" #checkPrice>
             <label class="form-check-label" for="price">Prezzo</label>
         </div>
         <div class="col-lg-2 col-sm-12">
-            <input type="checkbox" name="alphabet" id="alphabet" class="form-check-input" (click)="filterByAlphabeticalOrder()">
+            <input type="checkbox" name="alphabet" id="alphabet" class="form-check-input" (click)="filterByAlphabeticalOrder()" #checkAlphabet>
             <label class="form-check-label" for="alphabet">Ordine alfabetico</label>
         </div> 
     </div>

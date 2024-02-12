@@ -3,24 +3,24 @@
 
 <div *ngIf="cart && cart.items.length" class="container">
         <div class="row">
-            <div class="col-7 bg-dark game-info">
+            <div class="col-lg-7 col-sm-7 bg-dark game-info">
                 <div class="row" *ngFor="let cartItem of cart.items">
-                    <div class="col-4">
+                    <div class="col-lg-4 col-sm-2">
                         <img [src]="cartItem.game.imageUrl" [alt]="cartItem.game.name">
                     </div>
-                    <div class="col-6 game-selector">
+                    <div class="col-lg-6 col-sm-5 game-selector">
                         <span>
                             <a routerLink="/game/{{cartItem.game.id}}">
                                 {{ cartItem.game.name }}
                             </a>
                         </span>
                         <div class="row game-buttons">
-                            <div class="col-2">
+                            <div class="col-lg-2 col-sm-1">
                                 <button class="btn" (click)="removeFromCart(cartItem)">
                                     <fa-icon [icon]="['fas', 'trash']"></fa-icon>
                                 </button>
                             </div>
-                            <div class="col-5">
+                            <div class="col-lg-5 col-sm-4">
                                 <select class="form-select" #quantitySelect [value]="cartItem.quantity" (change)="changeQuantity(cartItem, quantitySelect.value)">
                                     <option>1</option>
                                     <option>2</option>
@@ -31,25 +31,25 @@
                             </div>
                         </div>
                     </div>
-                    <div class="price col-2 text-center">
+                    <div class="price col-lg-2 col-sm-1 text-center">
                         <span>{{ cartItem.price | currency:"EUR" }}</span>
                     </div>
                     <hr class="hr border-2">
                 </div>
             </div>
-            <div class="col-4 text-center resume">
+            <div class="col-lg-4 col-sm-3 text-center resume">
                 <div class="row bg-dark row-total-count">
-                    <div class="col-12">
+                    <div class="col-lg-12 col-sm-12">
                         Prodotti totali: {{ cart.totalCount }}
                     </div>
                 </div>
                 <div class="row bg-dark row-total-price">
-                    <div class="col-12">
+                    <div class="col-lg-12 col-sm-12">
                         Prezzo totale: {{ cart.totalPrice | currency:"EUR" }}
                     </div>
                 </div>
                 <div class="row bg-dark row-checkout-button">
-                    <div class="col-12">
+                    <div class="col-lg-12 col-sm-12">
                         <button class="btn" (click)="createOrder()">Procedi al pagamento</button>
                     </div>
                     &nbsp;

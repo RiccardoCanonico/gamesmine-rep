@@ -5,25 +5,25 @@
     &nbsp;
     <div class="order" *ngFor="let order of orders; index as i">
         <div class="row">
-            <div class="col-2">
+            <div class="col-lg-2 col-sm-2">
                 <img [src]="order.imageUrl" [alt]="order.name">
             </div>
-            <div class="col-6 name">
+            <div class="col-lg-6 col-sm-6 name">
                 {{ order.name }}
             </div>
         </div>
         &nbsp;
         <div class="row" *ngIf="!orders[i+1] || order.id != orders[i+1].id">
-            <div class="col-12 total">
+            <div class="col-lg-12 col-sm-12 total">
                 Totale: {{ order.totalPrice | currency:"EUR" }}
             </div>
-            <div class="col-6">             
+            <div class="col-lg-6 col-sm-12">             
                 {{ order.date }}      
             </div>
-            <div class="col-6 text-end order-number">
+            <div class="col-lg-6 col-sm-12 text-end order-number">
                 Ordine n. {{ order.id }}
             </div>
-            <div class="col-12">
+            <div class="col-lg-12 col-sm-12">
                 <hr class="hr border-2">
             </div>
         </div>       

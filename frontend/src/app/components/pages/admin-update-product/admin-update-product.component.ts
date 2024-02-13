@@ -17,7 +17,6 @@ export class AdminUpdateProductComponent {
     activatedRoute.params.subscribe((params) => {
       gameService.getGameById(params['id']).subscribe((serverGame) => {
         this.game = serverGame;
-        console.log(this.game.genre);
       });
     });
   }

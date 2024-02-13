@@ -11,12 +11,10 @@ import { IOrder } from "../shared/Interfaces/IOrder";
 
 export class OrderService {
     constructor(private http:HttpClient){}
-    //private order:Order | undefined;
     private orderInt!:IOrder;
 
     createOrder(order:IOrder):void{
         this.orderInt = order;
-        console.log(this.orderInt.date);
     }
 
     insertOrder(): Observable<Order>{

@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const mysql = require("mysql2");
 const bodyParser = require('body-parser');
 
-const app = express();
+const app = express();                  //inizializzo l'applicazione
 app.use(express.json());
 
 app.use(cors({
@@ -12,14 +12,14 @@ app.use(cors({
     origin:["http://localhost:4200"]
 }));
 
-let conn = mysql.createConnection({      
+let conn = mysql.createConnection({            //definisco la connessione al database
     host: "localhost",
     user: "root",
     password: "Riccardo.2001",
     database: "gamesmine"
 });
 
-conn.connect(function(err){
+conn.connect(function(err){                    //provo a connettermi al database
     if(err) throw err;
     console.log("Connessione avvenuta");
 });
@@ -27,6 +27,7 @@ conn.connect(function(err){
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
+//per ogni route definita chiamo una funzione a cui viene passato il parametro response (e il body della request se necessario), esegue l'interrogazione al database e invia la response al client 
 app.get("/api/games", (req, res) => {
     getAllGames(res);
 });
@@ -100,12 +101,12 @@ const generateTokenResponse = (user) => {
 };
 
 function getAllGames(res) {
-    conn.query("SELECT * FROM game WHERE availability=1", 
+    conn.query("SELECT * FROM game WHERE availability=1",               //eseguo la query da inviare al database
         function(errSQL, resSQL) {
-            if(errSQL) {
+            if(errSQL) {                                                //se la risposta è un errore non invio niente nella response
                 resSQL="null";
             } 
-            res.json(resSQL);
+            res.json(resSQL);                                           //nel caso non ci siano errori invio la response al client in json
         }
     );
 }
@@ -143,7 +144,7 @@ function login({email, password}, res){
             user = resSQL[0];
 
             if(user){
-                res.json(generateTokenResponse(user));
+                res.json(generateTokenResponse(user));                                    //se il login è andato a buon fine genero il token associato all'utente
                 conn.query(`UPDATE user SET token="${user.token}" WHERE id=${user.id}`);
             }
             else{
@@ -154,21 +155,21 @@ function login({email, password}, res){
 }
 
 function register(user, res){
-    conn.query(`SELECT email FROM user WHERE email="${user.email}"`, 
+    conn.query(`SELECT email FROM user WHERE email="${user.email}"`,     //prima controllo se l'utente esiste già
         (errSQL, resSQL) => {
             if(errSQL){
                 resSQL="null";
             }
             else if(resSQL[0]){
-                res.end("User already registered");
+                res.end("User already registered");                      //se esiste invio questa response
             }
             else{
-                conn.query(`INSERT INTO user (email, password, name, address, isAdmin) VALUES ("${user.email}", "${user.password}", "${user.name}", "${user.address}", 0)`,
+                conn.query(`INSERT INTO user (email, password, name, address, isAdmin) VALUES ("${user.email}", "${user.password}", "${user.name}", "${user.address}", 0)`,  //se non esiste lo inserisco all'interno del database
                     function(errSQL, resSQL){
                         if(errSQL) 
                             res.end("Error: "+errSQL);
                         else 
-                            res.json(user);
+                            res.json(user);                     //come response invio l'utente appena inserito
                     }
                 );
             }
@@ -177,13 +178,13 @@ function register(user, res){
 }
 
 function addOrder({userId, gameId, totalPrice, date}, res){
-    conn.query(`INSERT INTO orders (userId, totalPrice, date) VALUES (${userId}, ${totalPrice}, "${date}")`,
+    conn.query(`INSERT INTO orders (userId, totalPrice, date) VALUES (${userId}, ${totalPrice}, "${date}")`,                //inserisco l'ordine dell'utente nella tabella associata
         function(errSQL, resSQL){
             if(errSQL){
                 console.log(res.end("Error: "+errSQL));
             }
             else{
-                conn.query(`SELECT LAST_INSERT_ID()`, 
+                conn.query(`SELECT LAST_INSERT_ID()`,                                                                       //recupero il suo id dopo l'inserimento
                     function(errSQL, resSQL){
                         if(errSQL){
                             resSQL="null";
@@ -191,12 +192,12 @@ function addOrder({userId, gameId, totalPrice, date}, res){
                         else{
                             let orderId = resSQL[0]["LAST_INSERT_ID()"];
                     
-                            let query = `INSERT INTO order_games (orderId, gameId) VALUES `;
+                            let query = `INSERT INTO order_games (orderId, gameId) VALUES `;                                //nella tabella order_games inserisco tante righe quanti sono i prodotti comprati dall'utente   
                             for(let i=0; i < gameId.length; i++){
-                                query+=`(${parseInt(orderId)}, ${parseInt(gameId[i])}),`;
+                                query+=`(${parseInt(orderId)}, ${parseInt(gameId[i])}),`;                                   //concateno questa stringa a seconda della lunghezza dell'array gameId
                             }
 
-                            query=query.slice(0, -1);
+                            query=query.slice(0, -1);                                                                       //tolgo l'ultimo carattere per evitare errori di sintassi SQL
                            
                             conn.query(query, 
                                 function(errSQL, resSQL){

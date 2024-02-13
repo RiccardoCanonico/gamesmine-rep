@@ -15,15 +15,15 @@ export class CartService {
   constructor() { }
 
   addToCart(game:Game):void{
-    let cartItem = this.cart.items.find(item => item.game.id === game.id);
+    let cartItem = this.cart.items.find(item => item.game.id === game.id);      //cerco se il prodotto è già stato inserito nel carrello
     if(cartItem) return;
 
-    this.cart.items.push(new CartItem(game));
+    this.cart.items.push(new CartItem(game));     //se il prodotto non esiste già lo inserisco nel carrlo
     this.setCartToLocalStorage();
   }
 
   removeFromCart(gameId:number):void{
-    this.cart.items = this.cart.items.filter(item => item.game.id != gameId);
+    this.cart.items = this.cart.items.filter(item => item.game.id != gameId);     //rimuovo l'oggetto dal carrello
     this.setCartToLocalStorage();
   }
 
@@ -31,22 +31,22 @@ export class CartService {
     let cartItem = this.cart.items.find(item => item.game.id === gameId);
     if(!cartItem) return;
 
-    cartItem.quantity = quantity;
+    cartItem.quantity = quantity;                            //cambio la quantità e cambio il prezzo in base ad essa
     cartItem.price = quantity*cartItem.game.price;
     this.setCartToLocalStorage();
   }
 
-  clearCart(){
+  clearCart(){                                               //funzione per rimuovere tutti i prodotti dal carrello
     this.cart = new Cart();
     this.setCartToLocalStorage();
   }
 
-  getCartObservable():Observable<Cart>{
+  getCartObservable():Observable<Cart>{                      //ritorno il carrello come observable per usarlo all'esterno del servizio
     return this.cartSubject.asObservable();
   }
 
-  private setCartToLocalStorage():void{
-    this.cart.totalPrice = this.cart.items.reduce((prevSum, currentItem) => prevSum + currentItem.price, 0);
+  private setCartToLocalStorage():void{                      //funzione per aggiornare il carrello nel localStorage quando viene fatto un cambiamento
+    this.cart.totalPrice = this.cart.items.reduce((prevSum, currentItem) => prevSum + currentItem.price, 0);        
     this.cart.totalCount = this.cart.items.reduce((prevSum, currentItem) => prevSum + currentItem.quantity, 0);
     const cartJson = JSON.stringify(this.cart);
     localStorage.setItem('Cart', cartJson);

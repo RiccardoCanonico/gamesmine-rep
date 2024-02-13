@@ -11,8 +11,9 @@ import { Game } from "../shared/models/Game";
 })
 
 export class AdminService {
-    constructor(private http:HttpClient){}
+    constructor(private http:HttpClient){}                      //dichiaro il campo http per eseguire le chiamate al server
     
+    //le funzioni dei servizi sono tutte utilizzate per effettuare chiamate al server su una certa URL 
     getAllOrdersAdmin():Observable<Order[]>{
         return this.http.get<Order[]>(USER_ORDER_ADMIN_URL);
     }
@@ -26,10 +27,10 @@ export class AdminService {
     }
 
     insertProduct(game:Game):Observable<Game>{
-        return this.http.post<Game>(ADMIN_INSERT_PRODUCT, game).pipe(tap({
+        return this.http.post<Game>(ADMIN_INSERT_PRODUCT, game).pipe(tap({       //concateno la funzione tap() per controllare la correttezza del flusso di dati tornato dalla chiamata
             next: () => {
                 alert("Prodotto inserito con successo");
-              },
+            },
             error: () => {
                 alert("Prodotto già esistente");
             }

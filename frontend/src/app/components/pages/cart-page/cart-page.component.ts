@@ -15,28 +15,28 @@ import { Order } from 'src/app/shared/models/Order';
 export class CartPageComponent {
   cart!:Cart;
   constructor(private cartService:CartService, private router:Router, private userService:UserService, private orderService:OrderService){
-    this.cartService.getCartObservable().subscribe((cart) => {
+    this.cartService.getCartObservable().subscribe((cart) => {              //recupero le informazioni del carrello
       this.cart = cart;
     })
   }
 
-  removeFromCart(cartItem:CartItem){
+  removeFromCart(cartItem:CartItem){                                        //funzione che elimina un oggetto dal carrello, chiamando il metodo apposito contenuto nel servizio
     this.cartService.removeFromCart(cartItem.game.id);
   }
 
-  changeQuantity(cartItem:CartItem, quantityString:string){
+  changeQuantity(cartItem:CartItem, quantityString:string){                 //funzione che cambia quantità ad un oggetto dal carrello, chiamando il metodo apposito contenuto nel servizio
     const quantity = parseInt(quantityString);
     this.cartService.changeQuantity(cartItem.game.id, quantity); 
   }
 
-  createDate(){
+  createDate(){       //funzione per formattare la data da memorizzare nell'ordine effettuato dall'utente
     let today = new Date();
     let date:string = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 
     return date;
   }
 
-  createOrder(){
+  createOrder(){     //funzione che recupera le informazioni necessarie e tramite il servizio crea l'ordine da memorizzare nel database
     if(this.userService.currentUser.id == undefined){
       this.router.navigateByUrl("/login");
     }

@@ -14,19 +14,19 @@ export class RegisterPageComponent {
   
   constructor(private userService:UserService, private activatedRoute:ActivatedRoute, private router:Router){}
   
-  ngOnInit(): void {
+  ngOnInit(): void {              //inizializzo la route a cui deve andare dopo la registrazione
     this.returnUrl = "login";
   }
   
-  submit(form: NgForm){
-    let email=form.value.email;
+  submit(form: NgForm){           
+    let email=form.value.email;           //inizializzo i dati inseriti nel form da passare al server 
     let password=form.value.password;
     let name=form.value.name;
     let address=form.value.address;
 
-    password = SHA256(password).toString(enc.Hex); 
+    password = SHA256(password).toString(enc.Hex);        //la password non viene mandata in chiaro, ma viene prima criptata con un algoritmo di hashing
 
-    this.userService.register({email, password, name, address}).subscribe(() => {
+    this.userService.register({email, password, name, address}).subscribe(() => {             //tramite il servizio eseguo una richiesta al server per inserire l'utente nel dastabase
       this.router.navigateByUrl(this.returnUrl);
     });
   }

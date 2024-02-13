@@ -25,7 +25,7 @@ export class LoginPageComponent implements OnInit {
     password = SHA256(password).toString(enc.Hex); 
     
     this.userService.login({email, password}).subscribe(() => {
-      if(this.userService.currentUser.isAdmin){
+      if(this.userService.currentUser.isAdmin){                         //se l'utente che ha fatto il login è un admin viene mandato alla pagina di gestione
         this.router.navigateByUrl('/admin');        
       }
       else{

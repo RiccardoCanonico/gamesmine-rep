@@ -17,7 +17,7 @@ export class GamePageComponent {
     activatedRoute.params.subscribe((params) => {
       if(params['id']){
         gameService.getGameById(params['id']).subscribe((serverGame => {
-          serverGame.genre = serverGame.genre[0].split(','); 
+          serverGame.genre = serverGame.genre[0].split(',');            //eseguo split sul campo genre degli oggetti tornati dal server per farlo diventare un array di stringhe
           this.game = serverGame;
         }));
       }
@@ -25,11 +25,11 @@ export class GamePageComponent {
   }
 
   addToCart(){
-    if(this.userService.currentUser.id == undefined){
-      this.router.navigateByUrl("/login");
+    if(this.userService.currentUser.id == undefined){      //con il servizio dedicato all'utente controllo se è stato effettuato un login: se non è stato fatto l'utente viene rimandato alla pagina per effettuarlo grazie alla classe Router
+      this.router.navigateByUrl("/login");                              
     }
     else{
-      this.cartService.addToCart(this.game);
+      this.cartService.addToCart(this.game);              //se è stato effettuato un login l'utente può aggiungere un gioco al carrello grazie al servizio dedicato a quest'ultimo e successivamente viene rimandato alla pagina apposita
       this.router.navigateByUrl('/cart-page');
     } 
   }

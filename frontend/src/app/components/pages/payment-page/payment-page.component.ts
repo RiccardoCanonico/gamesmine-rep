@@ -18,9 +18,9 @@ export class PaymentPageComponent {
     })
   }
 
-  insertOrder(){
+  insertOrder(){          //funzione che tramite il servizio esegue una richiesta al server per inserire l'ordine nel database
     this.orderService.insertOrder().subscribe(() => {
-      this.cartService.clearCart();
+      this.cartService.clearCart();               //dopo che la funzione ha ritornato tutti i dati rimuovo i prodotti dal carrello e rimando l'utente alla home
       this.router.navigateByUrl('');
     });
   }
